@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -21,5 +22,7 @@ def make_move():
         game_state['turn'] = 'player2' if player == 'player1' else 'player1'
     return jsonify(game_state)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/api/game-data/<string:data>', methods=['GET'])
+def get_game_data(data):
+    # Just a placeholder for now - we should implement proper data handling
+    return send_file('game.js', mimetype='text/x-gson')
